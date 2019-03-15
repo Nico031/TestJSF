@@ -1,19 +1,52 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html 	xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:f="http://java.sun.com/jsf/core"
-		xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
-    <title>Premier JSF</title>
-</h:head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:body>
-    <h3>JSF Hello World Example</h3>
-    <h:form>
-    	What's your name?
-    	<h:inputText value="#{helloBean.name}"></h:inputText>
-    	<h:commandButton value="Welcome Me" action="welcome"></h:commandButton>
-    </h:form>
-</h:body>
+<f:view>
+	<h:head>
+		<title>#{msg['login.head.title']}</title>
+	</h:head>
+
+	<h:body>
+
+		<h3>#{msg['login.h3.title']}</h3>
+
+		<h:form>
+			<h:outputLabel 
+				for="login">#{msg['login.label.login']}
+			</h:outputLabel>
+
+			<!-- helloBean = instance de la classe HelloBean et name = attribut de cette classe
+    			ici JSF va chercher le setter dans HelloBean pour construire l'objet-->
+			<h:inputText 
+				value="#{helloBean.name}" label="#{msg['login.label.login']}" id = "login" required='true'>
+			</h:inputText>
+			
+			<br></br>
+			<br></br>
+			
+			<h:outputLabel 
+				for="psswd">#{msg['login.label.psswd']}
+			</h:outputLabel>
+			
+			<!-- le label sert à écrire le message d'erreur pour préciser de quel champ il s'agit -->
+			<h:inputSecret
+				id="psswd" value="#{helloBean.password}" label="#{msg['login.label.psswd']}" required="true" size="20" maxlength="20">
+			</h:inputSecret>
+			
+			<br></br>
+			<br></br>
+			
+			<h:commandButton 
+				value="#{msg['login.label.button']}" action="welcome">
+			</h:commandButton>
+			
+		</h:form>
+	</h:body>
+
+</f:view>
 
 </html>
